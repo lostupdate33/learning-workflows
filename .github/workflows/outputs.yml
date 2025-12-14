@@ -1,0 +1,15 @@
+name : Testing outputs workflow
+
+on:
+  workflow_dispatch:  # allows manual trigger
+
+jobs:
+  producer_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Produce an output
+        id: produce_output
+        run: |
+          test_key="test_value"
+          echo "output_key=$test_key" >> $GITHUB_OUTPUT
+          echo "$GITHUB_OUTPUT"
