@@ -1,0 +1,20 @@
+name : This is a manual trigger workflow
+
+on:
+  workflow_dispatch:  # allows manual trigger
+
+jobs:
+  manual_job_1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Manual trigger step
+        id : manual_step
+        run: echo "This workflow was triggered manually!"
+  
+  manual_job_2:
+    runs-on: ubuntu-latest
+    needs: manual_job_1
+    steps:
+      - name: Follow-up step
+        id: follow_up_step
+        run: echo "This is the second job that runs after the first manual job."
