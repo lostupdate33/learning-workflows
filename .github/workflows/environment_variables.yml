@@ -1,0 +1,22 @@
+name : Enivronment Variables Workflow
+
+on:
+  workflow_dispatch:  # allows manual trigger
+
+env:
+  CUSTOM_ENV_VAR: "This is a custom environment variable"
+
+jobs:
+  env_var_job:
+    runs-on: ubuntu-latest
+    env : 
+      JOB_LEVEL_ENV_VAR: "This is a job-level environment variable"
+    steps:
+      - name: Print Environment Variables
+        id : print_env_vars
+        env:
+          STEP_LEVEL_ENV_VAR: "This is a step-level environment variable"
+        run: |
+          echo "GITHUB_WORKFLOW: $CUSTOM_ENV_VAR"
+          echo "JOB_LEVEL_ENV_VAR: $JOB_LEVEL_ENV_VAR"
+          echo "STEP_LEVEL_ENV_VAR: $STEP_LEVEL_ENV_VAR"
